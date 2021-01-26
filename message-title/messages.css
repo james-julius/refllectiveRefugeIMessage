@@ -3,46 +3,18 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  max-width: 400px;
-  .message-row {
-    width: 100%;
-  }
+  max-width: 300px;
+  font-family: Arimo, sans-serif;
+}
+.messages-container .message-row {
+  width: 100%;
 }
 
 .typing-indicator {
-  $ti-color-bg: #E6E7ED;
-  $blue-color-bg: dodgerblue;
-  background-color: $ti-color-bg;
-  &.left {
-  margin-right: auto;
-  margin-left: 0;
-  }
-  &.right {
-    background-color: $blue-color-bg;
-    color: white;
-    margin-left: auto;
-    margin-right: 0;
-    span {
-      background-color: #CFDECA;
-    }
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 85%;
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-      background-color: $blue-color-bg;
-    }
-    &::after {
-      height: 10px;
-      width: 10px;
-      left: calc(100% + 5px);
-      bottom: -10px;
-    }
-  }
+  background-color: #E6E7ED;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   will-change: transform;
   width: auto;
   border-radius: 50px;
@@ -51,38 +23,84 @@
   margin: 0 auto;
   position: relative;
   animation: 2s bulge infinite ease-out;
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: -2px;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background-color: $ti-color-bg;
-  }
-  &::after {
-    height: 10px;
-    width: 10px;
-    left: -10px;
-    bottom: -10px;
-  }
-  span {
-    height: 15px;
-    width: 15px;
-    float: left;
-    margin: 0 1px;
-    background-color: #9E9EA1;
-    display: block;
-    border-radius: 50%;
-    opacity: 0.4;
-    @for $i from 1 through 3 {
-      &:nth-of-type(#{$i}) {
-        animation: 1s blink infinite ($i * .3333s);
-      }
-    }
-  }
+}
+.typing-indicator.hidden {
+  display: none;
+}
+.typing-indicator.typed {
+  animation: none;
+}
+.typing-indicator.typed span {
+  display: none;
+}
+.typing-indicator.left {
+  margin-right: auto;
+  margin-left: 0;
+  font-size: 1.2rem;
+}
+.typing-indicator.right {
+  background-color: dodgerblue;
+  color: white;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 10px;
+  font-size: 0.8rem;
+}
+.typing-indicator.right span {
+  height: 7px;
+  width: 7px;
+  background-color: #CFDECA;
+}
+.typing-indicator.right::before, .typing-indicator.right::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 90%;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: dodgerblue;
+}
+.typing-indicator.right::after {
+  height: 5px;
+  width: 5px;
+  left: calc(100% + 5px);
+  bottom: -10px;
+}
+.typing-indicator::before, .typing-indicator::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #E6E7ED;
+}
+.typing-indicator::after {
+  height: 10px;
+  width: 10px;
+  left: -10px;
+  bottom: -10px;
+}
+.typing-indicator span {
+  height: 15px;
+  width: 15px;
+  float: left;
+  margin: 0 1px;
+  background-color: #9E9EA1;
+  display: block;
+  border-radius: 50%;
+  opacity: 0.4;
+}
+.typing-indicator span:nth-of-type(1) {
+  animation: 1s blink infinite 0.3333s;
+}
+.typing-indicator span:nth-of-type(2) {
+  animation: 1s blink infinite 0.6666s;
+}
+.typing-indicator span:nth-of-type(3) {
+  animation: 1s blink infinite 0.9999s;
 }
 
 @keyframes blink {
@@ -90,14 +108,11 @@
     opacity: 1;
   }
 }
-
 @keyframes bulge {
   50% {
     transform: scale(1.05);
   }
 }
-
-// vertically center demo 
 html {
   display: table;
   height: 100%;
@@ -108,3 +123,5 @@ body {
   display: table-cell;
   vertical-align: middle;
 }
+
+/*# sourceMappingURL=messages.css.map */
