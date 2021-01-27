@@ -126,7 +126,6 @@ code {
     width: inherit;
     position: absolute;
     overflow: auto;
-    pointer-events: none;
 }
 
 
@@ -171,12 +170,15 @@ p::before, p::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
 
-.messages .photo img {
-    width: 100%;
+.messages, .photo img {
     height: auto;
+    object-fit: cover;
+    object-position: center;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px;
 }
 
 .message {

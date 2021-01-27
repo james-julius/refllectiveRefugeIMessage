@@ -102,7 +102,7 @@ const data = {
   ],
 };
 
-const Header = ({name, initials}) => {
+const Header = ({name, initials, profilePic}) => {
 
     function getTime(){
         let date = new Date();
@@ -157,12 +157,10 @@ const Message = ({ isArtist, text, photoMessage, photo }) => {
   if (photoMessage) {
     return (
       <div className={"messages photo animated slideInUp fast " + className}>
-        <p className={"message"}>
-          <img src={photo} alt="An photo illustrating the artists response"/>
-        </p>
+          <img className="" src={photo} alt="An photo illustrating the artists response"/>
       </div>
     )
-  } else { 
+  } else {
     return (
       <div className={"messages animated slideInUp fast " + className}>
         <p className={"message"}>
@@ -174,11 +172,18 @@ const Message = ({ isArtist, text, photoMessage, photo }) => {
 };
 
 
-const MessageHistory = ({ messages }) => (
-  <div className={"chat"}>
+const MessageHistory = ({ messages }) =>{
+  const chatRef = React.useRef(null);
+
+  React.useEffect(() => {
+    document.onscroll = () => document.queryElement('.chat').scrollTop = document.documentElement.scrollTop;
+  }, [])
+
+  return (
+  <div ref={chatRef} className={"chat"} ref={chatRef} >
     {messages.map((msg, idx) => (<Message key={idx} {...msg} />))}
   </div>
-);
+)};
 
 function SpotifyBar({
   spotifyURI,
@@ -234,7 +239,7 @@ const Phone = () => {
     <div
         className={'window'}
     >
-        <Header name={data.name} initials={initialiseName()}/>
+        <Header name={data.name} initials={initialiseName()} profilePic={data.profilePic}/>
         <MessageHistory messages={data.messages}/>
         <CollapsedInputFooter spotifyURI={data.spotifyURI}/>
     </div>
