@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
-        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    </head>
-<body>
-    <div id="react-component-container">**drumroll**</div>
-</body>
-<foot>
-<script type="text/babel">
+
 const data = {
   name:
-    "Alice Night",
+    "{{wf {&quot;path&quot;:&quot;name&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}",
   spotifyURI:
     "https://open.spotify.com/track/3PFnF7lmHOxoYGXhxUkzCE?si=Kjoy_nseQ_2-OxGTRQvTag",
   profilePic: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc9bQhs8EkNeOidRUWKcd9CWSEgfLgzWTa3w&usqp=CAU",
@@ -101,6 +89,28 @@ const data = {
     },
   ],
 };
+const datas = {
+    spotifyURI: "",
+    messages: [
+      {
+        isArtist: true,
+        text: `How's isolation been for you?`,
+      },
+      {
+        isArtist: false,
+        text: `Not too bad thanks`,
+      },
+      {
+        isArtist: true,
+        text: `Have you been making lots of music? `,
+      },
+      {
+        isArtist: false,
+        text: `Oh yeah`,
+      },
+    ],
+    name: 'James Julius'
+}
 
 const Header = ({name, initials}) => {
 
@@ -125,27 +135,27 @@ const Header = ({name, initials}) => {
         <div className={'clock'}>
         {getTime()}
         </div>
-        <span className="iconify" data-icon="carbon:location-current" data-inline="false"></span>
+        <span class="iconify" data-icon="carbon:location-current" data-inline="false"></span>
       </span>
       <span className={'right-icons'}>
-        <span className="iconify" data-icon="ion:cellular" data-inline="false"></span>
+        <span class="iconify" data-icon="ion:cellular" data-inline="false"></span>
         &nbsp;
-        <span className="iconify" data-icon="ion:wifi" data-inline="false"></span>
+        <span class="iconify" data-icon="ion:wifi" data-inline="false"></span>
         &nbsp;
-        <span className="iconify" data-icon="ion:battery-full" data-inline="false"></span>
+        <span class="iconify" data-icon="ion:battery-full" data-inline="false"></span>
       </span>
     </div>
     <div className={'messenger-header'}>
         <span className={'back-arrow'}>
-            <span className="iconify" data-icon="ion-ios-arrow-back" data-inline="false"></span>
+            <span class="iconify" data-icon="ion-ios-arrow-back" data-inline="false"></span>
         </span>
         <span className={"user-detail"}>
             <div className={"user-icon"}>
-                <img className="profile-pic" src={data.profilePic} alt={"A picture of " + name}/>
+                <img class="profile-pic" src={profilePic} alt={"A picture of " + name}/>
             </div>
             <p className={"user-name"}>
                 {name}
-                <span className="iconify right-arrow" data-icon="ic:outline-arrow-forward-ios" data-inline="false"></span>
+                <span class="iconify right-arrow" data-icon="ic:outline-arrow-forward-ios" data-inline="false"></span>
             </p>
          </span>
     </div>
@@ -156,7 +166,7 @@ const Message = ({ isArtist, text, photoMessage, photo }) => {
   let className = (isArtist ? "yours" : "mine");
   if (photoMessage) {
     return (
-      <div className={"messages photo animated slideInUp fast " + className}>
+      <div className={"messages animated slideInUp fast " + className}>
         <p className={"message"}>
           <img src={photo} alt="An photo illustrating the artists response"/>
         </p>
@@ -230,7 +240,7 @@ const Phone = () => {
   }
 
   return (
-  <div className="phone-image">
+  <div class="phone-image">
     <div
         className={'window'}
     >
@@ -244,7 +254,3 @@ const Phone = () => {
 const domContainer = document.querySelector('#react-component-container');
 
 ReactDOM.render(React.createElement(Phone), domContainer);
-</script>
-<link rel="stylesheet" href="./index.css"/>
-</foot>
-</html>
