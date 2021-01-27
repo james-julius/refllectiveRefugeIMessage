@@ -102,7 +102,7 @@ const data = {
   ],
 };
 
-const Header = ({name, initials, profilePic}) => {
+const Header = ({name, initials, profilePic, instaLink}) => {
 
     function getTime(){
         let date = new Date();
@@ -140,9 +140,11 @@ const Header = ({name, initials, profilePic}) => {
             <span className="iconify" data-icon="ion-ios-arrow-back" data-inline="false"></span>
         </span>
         <span className={"user-detail"}>
-            <div className={"user-icon"}>
-                <img className="profile-pic" src={data.profilePic} alt={"A picture of " + name}/>
-            </div>
+            <a href={instaLink} target="_blank">
+              <div className={"user-icon"}>
+                  <img className="profile-pic" src={data.profilePic} alt={"A picture of " + name}/>
+              </div>
+            </a>
             <p className={"user-name"}>
                 {name}
                 <span className="iconify right-arrow" data-icon="ic:outline-arrow-forward-ios" data-inline="false"></span>
@@ -239,7 +241,12 @@ const Phone = () => {
     <div
         className={'window'}
     >
-        <Header name={data.name} initials={initialiseName()} profilePic={data.profilePic}/>
+        <Header 
+          name={data.name} 
+          initials={initialiseName()} 
+          profilePic={data.profilePic}
+          instaLink={data.instaLink}
+        />
         <MessageHistory messages={data.messages}/>
         <CollapsedInputFooter spotifyURI={data.spotifyURI}/>
     </div>
