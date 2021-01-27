@@ -7,6 +7,7 @@
         <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     </head>
 <body>
+    <img id="scroll-linked-photo"/>
     <div id="react-component-container">**drumroll**</div>
 </body>
 <foot>
@@ -154,13 +155,43 @@ const Header = ({name, initials, profilePic, instaLink}) => {
   </div>
 )};
 
-const Message = ({ isArtist, text, photoMessage, photo }) => {
+const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId }) => {
   let className = (isArtist ? "yours" : "mine");
+
   if (photoMessage) {
+    React.useEffect(() => {
+      // Get the reference for this element and measure its heights too know if an image comes into bounds
+        let chat = document.querySelector('.chat');
+        function checkIfShouldSetActivePhoto() {
+        console.log('checkIfShouldSetActivePhoto firing for el #' + keyProp);
+        debugger;
+        let photoId = `#photo${keyProp}`;
+        console.log(chat);
+        let photoMessage = document.querySelector(photoId)
+        let webflowPhotoEl = document.querySelector("#scroll-linked-photo")
+        // Set a scroll event listener for each photo element, if a photo's top comes into view,
+        // It should be set as the next photo.
+        let bounds = chat.getBoundingClientRect();
+        let photoBounds = photoMessage.getBoundingClientRect();
+        let [chatTop, chatBottom] = [bounds.y, bounds.y + bounds.height];
+        let photoTop = photoBounds.y;
+        // Check it hasn't already been set
+          if (!photoMessage.src !== webflowPhotoEl.srcset) {
+            if (photoTop > chatTop && photoTop < chatBottom) {
+              // Switch it over
+              console.log("shifting over to: " + photoMessage.src);
+              webflowPhotoEl.srcset = photoMessage.src;
+            }
+          }
+        }
+
+        chat.addEventListener('scroll', checkIfShouldSetActivePhoto)
+    }, []);
+
     return (
-      <div className={"messages photo animated slideInUp fast " + className}>
-          <img className="" src={photo} alt="An photo illustrating the artists response"/>
-      </div>
+      <>{photo && <div className={"messages photo animated slideInUp fast " + className}>
+          <img id={'photo' + keyProp} src={photo} alt="An photo illustrating the artists response"/>
+      </div>}</>
     )
   } else {
     return (
@@ -174,16 +205,17 @@ const Message = ({ isArtist, text, photoMessage, photo }) => {
 };
 
 
-const MessageHistory = ({ messages }) =>{
+const MessageHistory = ({ messages, photoChangerId }) =>{
   const chatRef = React.useRef(null);
 
   React.useEffect(() => {
-    document.onscroll = () => document.queryElement('.chat').scrollTop = document.documentElement.scrollTop;
-  }, [])
+    document.addEventListener('scroll', () => {
+      document.querySelector('.chat').scrollTop = document.documentElement.scrollTop
+    })}, [])
 
   return (
-  <div ref={chatRef} className={"chat"} ref={chatRef} >
-    {messages.map((msg, idx) => (<Message key={idx} {...msg} />))}
+  <div ref={chatRef} className={"chat"} >
+    {messages.map((msg, idx) => (<Message key={idx} keyProp={idx} {...msg} photoChangerId={photoChangerId} />))}
   </div>
 )};
 
@@ -247,7 +279,7 @@ const Phone = () => {
           profilePic={data.profilePic}
           instaLink={data.instaLink}
         />
-        <MessageHistory messages={data.messages}/>
+        <MessageHistory messages={data.messages} photoChangerId={data.photoChangerId}/>
         <CollapsedInputFooter spotifyURI={data.spotifyURI}/>
     </div>
   </div>
@@ -258,5 +290,15 @@ const domContainer = document.querySelector('#react-component-container');
 ReactDOM.render(React.createElement(Phone), domContainer);
 </script>
 <link rel="stylesheet" href="./index.css"/>
+<script>
+/* window.addEventListener('load', () => {
+let chat = document.querySelector('.chat');
+console.log('loaded')
+setTimeout(() => chat.scrollTop = 200, 1000)
+setTimeout(() => chat.scrollTop = 300, 2000)
+setTimeout(() => chat.scrollTop = 600, 3000)
+setTimeout(() => chat.scrollTop = 1000, 4000)
+}); */
+</script>
 </foot>
 </html>
