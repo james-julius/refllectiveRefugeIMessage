@@ -21,8 +21,8 @@ function show(id) {
     element.classList.remove('hidden');
 }
 
-genIntervals(3, [2000, 2000, 2000], [
-    () => stopTyping('#title', 'Artists In Isolation'),
+genIntervals(3, [1500, 750, 1500], [
+    () => stopTyping('#title', 'artists in isolation'),
     () => show('#byClaire'),
-    () => stopTyping('#byClaire', 'by Claire Marie Vogel')
+    () => stopTyping('#byClaire', 'by claire marie vogel')
 ]) 

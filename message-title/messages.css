@@ -5,6 +5,7 @@
   margin: auto;
   max-width: 300px;
   font-family: Arimo, sans-serif;
+  margin-top: 5px;
 }
 .messages-container .message-row {
   width: 100%;
@@ -43,8 +44,8 @@
   color: white;
   margin-left: auto;
   margin-right: 0;
-  padding: 10px;
-  font-size: 0.8rem;
+  padding: 15px;
+  font-size: 1rem;
 }
 .typing-indicator.right span {
   height: 7px;
@@ -60,12 +61,6 @@
   width: 10px;
   border-radius: 50%;
   background-color: dodgerblue;
-}
-.typing-indicator.right::after {
-  height: 5px;
-  width: 5px;
-  left: calc(100% + 5px);
-  bottom: -10px;
 }
 .typing-indicator::before, .typing-indicator::after {
   content: "";
