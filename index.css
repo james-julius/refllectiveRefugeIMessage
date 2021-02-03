@@ -1,20 +1,10 @@
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.react-component-container {
+    flex: 1 1 auto;
+    max-width:  100%;
+    height: auto;
+    min-width:  250px;
+    max-height:  600px;
 }
 
 .header {
@@ -105,27 +95,33 @@ code {
     
 }
 
-.window {
+.window {    
     background-color: transparent;
-    height: calc(660 / 700 * 100vh);
-    width: calc(307 / 350 * 50vh);
-    /* margin: 3.2vh auto; */
-    margin: 3.2vh;
+    max-height: 100%;
+    width: 87.1%;
+    margin: 5% 6.5%;
     z-index: -10;
     display: flex;
     flex-direction: column;
+    /* display: none; */
+    position: absolute;
+    height: 94.4%;
+    top: 0;
+    left: 0%;
 }
 
+
 .phone-image {
-    background-image: url("/iphone-xs-frame.png");
-    background-size: contain;
+    background-image: url(/iphone-xs-frame.png);
+    background-size: 100%;
     background-repeat: no-repeat;
     z-index: 10;
     -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(10%, transparent) , to(rgba(250, 250, 250, 0.1)));
-    height: inherit;
-    width: inherit;
-    position: absolute;
+    height: 0px;
+    width: auto;
+    position: relative;
     overflow: auto;
+    padding-top: 128%;
 }
 
 
@@ -150,11 +146,11 @@ p::before, p::after {
 .chat {
     width: auto;
     display: flex;
-    padding: 0 20px;
+    padding: 0 3%;
     flex-direction: column;
-    height: 66vh;
+    height: 78%;
     z-index: -5;
-    background-color: white;
+    background-color: #fff;
     overflow: auto;
     top: 105px;
     overflow-x: hidden;
@@ -170,6 +166,12 @@ p::before, p::after {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (min-width: 500px) {
+    .messages .photo {
+        height: 0px;
+    }
 }
 
 .messages, .photo img {
@@ -352,11 +354,11 @@ p::before, p::after {
 
 .header {
     background-color: #f0f0f0;
-    height: 16vh;
+    height: 20%;
     width: 100%;
-    border-top-left-radius: 4.3vh;
-    border-top-right-radius: 4.3vh;
-    border-bottom: dimgrey 0.3pt solid;
+    border-top-left-radius: 12.2%;
+    border-top-right-radius: 12.2%;
+    border-bottom: #696969 .3pt solid;
     z-index: 3;
 }
 
@@ -368,6 +370,7 @@ p::before, p::after {
     margin-top: 12px;
     margin-left: 19px;
     display: flex;
+    align-items: center;
     float: left;
     font-size: .6em;
 }
@@ -382,16 +385,18 @@ p::before, p::after {
 
 .messenger-header {
     clear: both;
+    top: 0;
+    width: 100%
 }
 
 .back-arrow {
     display: flex;
     height: 2vh;
-    position: relative;
-    top: 2.5vh;
-    margin-left: 2.5vh;
+    position: absolute;
+    top: 4%;
+    margin-left: 15%;
     z-index: 15;
-    color: #0B93F6;
+    color: #0b93f6;
     font-size: 1.5em;
     margin-top: 15px;
 }
@@ -399,16 +404,17 @@ p::before, p::after {
 .user-detail {
     display: block;
     margin: 0 auto;
-    padding-top: 0vh;
+    padding-top: 0;
 }
 
 .user-icon {
-    background-image: linear-gradient(#939393, #7b7b7b);
+    left: calc(50% - 12.5px);
+    background-image: linear-gradient(#939393,#7b7b7b);
     border-radius: 50%;
-    height: 4.8vh;
-    width: 4.8vh;
-    color: white;
-    font-family: "Helvetica Neue", serif;
+    height: 25px;
+    width: 25px;
+    color: #fff;
+    font-family: "Helvetica Neue",serif;
     font-size: .75em;
     text-align: center;
     line-height: 4.8vh;
@@ -416,6 +422,8 @@ p::before, p::after {
     overflow: hidden;
     display: flex;
     align-items: center;
+    position: absolute;
+    top: 5%;
     justify-content: center;
 }
 
@@ -511,9 +519,9 @@ p::before, p::after {
     background-color: #d7d7dc;
     bottom: 0;
     width: 100%;
-    height: 12vh;
-    border-bottom-left-radius: 4.3vh;
-    border-bottom-right-radius: 4.3vh;
+    /* height: 12vh; */
+    border-bottom-left-radius: 12.5%;
+    border-bottom-right-radius: 12.5%;
     z-index: 8;
     overflow: hidden;
 }
