@@ -157,7 +157,7 @@ const Header = ({name, initials, profilePic, instaLink}) => {
 
 const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId }) => {
   let className = (isArtist ? "yours" : "mine");
-
+  debugger;
   if (photoMessage) {
     React.useEffect(() => {
       // Get the reference for this element and measure its heights too know if an image comes into bounds
@@ -189,9 +189,9 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
     }, []);
 
     return (
-      <>{photo && <div className={"messages photo animated slideInUp fast " + className}>
+      <React.Fragment>{photo && <div className={"messages photo animated slideInUp fast " + className}>
           <img id={'photo' + keyProp} src={photo} alt="An photo illustrating the artists response"/>
-      </div>}</>
+      </div>}</React.Fragment>
     )
   } else {
     return (
