@@ -84,7 +84,7 @@
 }
 
 .user-name {
-    font-size: .7em;
+    font-size: .9rem;
     color: #000000;
     font-family: "Helvetica Neue", serif;
     text-align: center;
@@ -114,16 +114,18 @@
 .window {    
     background-color: transparent;
     max-height: 100%;
-    width: 87.1%;
+    width: 87.15%;
     margin: 5% 6.5%;
     z-index: -10;
     display: flex;
     flex-direction: column;
     /* display: none; */
     position: absolute;
-    height: 94.4%;
+    height: 94.96%;
     top: 0;
+    border-radius: 5%;
     left: 0%;
+    overflow: hidden;
 }
 
 
@@ -164,7 +166,7 @@ p::before, p::after {
     display: flex;
     padding: 0 3%;
     flex-direction: column;
-    height: 78%;
+    height: 80%;
     z-index: -5;
     background-color: #fff;
     overflow: auto;
