@@ -187,7 +187,7 @@ p::before, p::after {
 }
 
 @media (min-width: 500px) {
-    .messages .photo {
+    .messages img {
         height: 0px;
     }
 }

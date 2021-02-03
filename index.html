@@ -160,14 +160,12 @@ const Header = ({name, initials, profilePic, instaLink}) => {
 
 const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId }) => {
   let className = (isArtist ? "yours" : "mine");
-  debugger;
   if (photoMessage) {
     React.useEffect(() => {
       // Get the reference for this element and measure its heights too know if an image comes into bounds
         let chat = document.querySelector('.chat');
         function checkIfShouldSetActivePhoto() {
         console.log('checkIfShouldSetActivePhoto firing for el #' + keyProp);
-        debugger;
         let photoId = `#photo${keyProp}`;
         console.log(chat);
         let photoMessage = document.querySelector(photoId)
