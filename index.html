@@ -162,7 +162,7 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
   let className = (isArtist ? "yours" : "mine");
   if (photoMessage) {
     React.useEffect(() => {
-      // Get the reference for this element and measure its heights too know if an image comes into bounds
+      // Get the reference for this element and measure its heights to know if an image comes into bounds
         let chat = document.querySelector('.chat');
         function checkIfShouldSetActivePhoto() {
         console.log('checkIfShouldSetActivePhoto firing for el #' + keyProp);
@@ -198,7 +198,7 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
     return (
       <div className={"messages animated slideInUp fast " + className}>
         <p className={"message"}>
-          {text}
+          {text ? text : ''}
         </p>
       </div>
     )
@@ -210,9 +210,19 @@ const MessageHistory = ({ messages, photoChangerId }) =>{
   const chatRef = React.useRef(null);
 
   React.useEffect(() => {
+    // Link the scroll to the body scroll
+    const chat = document.querySelector('.chat');
     document.addEventListener('scroll', () => {
-      document.querySelector('.chat').scrollTop = document.documentElement.scrollTop
-    })}, [])
+      chat.scrollTop = document.documentElement.scrollTop
+    })
+    // Set the scroll height of the body to 
+    document.body.style.minHeight = window.innerHeight + chat.scrollHeight;
+
+    window.addEventListener('resize', () => {
+      document.body.style.minHeight = window.innerHeight + chat.scrollHeight;
+    })
+    
+    }, [])
 
   return (
   <div ref={chatRef} className={"chat"} >
