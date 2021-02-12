@@ -181,7 +181,11 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
             if (photoTop > chatTop && photoTop < chatBottom) {
               // Switch it over
               // console.log("shifting over to: " + photoMessage.src);
-              webflowPhotoEl.srcset = photoMessage.src;
+              webflowPhotoEl.style.opacity = 0
+              setTimeout(() => {
+                webflowPhotoEl.srcset = photoMessage.src;
+                webflowPhotoEl.style.opacity = 1;
+              }, 500);
             }
           }
         }
@@ -216,11 +220,6 @@ const MessageHistory = ({ messages, photoChangerId }) =>{
       chat.scrollTop = document.documentElement.scrollTop;
     });
 
-    chat.addEventListener('scroll', () => {
-      document.documentElement.scrollTop = chat.scrollTop;
-    })
-    
-
     // Set the scroll height of the body to 
     document.body.style.minHeight = window.innerHeight + chat.scrollHeight;
 
@@ -231,7 +230,7 @@ const MessageHistory = ({ messages, photoChangerId }) =>{
     }, [])
 
   return (
-  <div ref={chatRef} className={"chat"} >
+  <div ref={chatRef} className={"chat"} style={{pointerEvents: 'none'}} >
     {messages.map((msg, idx) => (<Message key={idx} keyProp={idx} {...msg} photoChangerId={photoChangerId} />))}
   </div>
 )};
