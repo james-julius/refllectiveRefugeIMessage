@@ -170,7 +170,7 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
       let photoId = `#photo${keyProp}`;
       // console.log(chat);
       let photoMessage = document.querySelector(photoId)
-      let webflowPhotoEl = document.querySelector("#scroll-linked-photo")
+      let webflowPhotoEl = document.querySelector("#scroll-linked-photo");
       // Set a scroll event listener for each photo element, if a photo's top comes into view,
       // It should be set as the next photo.
       let bounds = chat.getBoundingClientRect();
@@ -187,8 +187,10 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
             webflowPhotoEl.style.opacity = 0
             setTimeout(() => {
               webflowPhotoEl.srcset = photoMessage.src;
+            }, 750);
+            setTimeout(() => {
               webflowPhotoEl.style.opacity = 1;
-            }, 500);
+            }, 1500);
           }
         }
       }
