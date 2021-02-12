@@ -165,9 +165,9 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
       // Get the reference for this element and measure its heights to know if an image comes into bounds
         let chat = document.querySelector('.chat');
         function checkIfShouldSetActivePhoto() {
-        console.log('checkIfShouldSetActivePhoto firing for el #' + keyProp);
+        // console.log('checkIfShouldSetActivePhoto firing for el #' + keyProp);
         let photoId = `#photo${keyProp}`;
-        console.log(chat);
+        // console.log(chat);
         let photoMessage = document.querySelector(photoId)
         let webflowPhotoEl = document.querySelector("#scroll-linked-photo")
         // Set a scroll event listener for each photo element, if a photo's top comes into view,
@@ -180,7 +180,7 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
           if (!photoMessage.src !== webflowPhotoEl.srcset) {
             if (photoTop > chatTop && photoTop < chatBottom) {
               // Switch it over
-              console.log("shifting over to: " + photoMessage.src);
+              // console.log("shifting over to: " + photoMessage.src);
               webflowPhotoEl.srcset = photoMessage.src;
             }
           }
@@ -213,13 +213,19 @@ const MessageHistory = ({ messages, photoChangerId }) =>{
     // Link the scroll to the body scroll
     const chat = document.querySelector('.chat');
     document.addEventListener('scroll', () => {
-      chat.scrollTop = document.documentElement.scrollTop
+      chat.scrollTop = document.documentElement.scrollTop;
+    });
+
+    chat.addEventListener('scroll', () => {
+      document.documentElement.scrollTop = chat.scrollTop;
     })
+    
+
     // Set the scroll height of the body to 
     document.body.style.minHeight = window.innerHeight + chat.scrollHeight;
 
     window.addEventListener('resize', () => {
-      document.body.style.minHeight = window.innerHeight + chat.scrollHeight;
+      document.documentElement.style.minHeight = window.innerHeight + chat.scrollHeight;
     })
     
     }, [])
