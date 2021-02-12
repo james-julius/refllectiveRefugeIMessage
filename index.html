@@ -15,6 +15,7 @@
 </body>
 <foot>
 <script type="text/babel">
+
 const data = {
   name:
     "Alice Night",
@@ -163,34 +164,36 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
   if (photoMessage) {
     React.useEffect(() => {
       // Get the reference for this element and measure its heights to know if an image comes into bounds
-        let chat = document.querySelector('.chat');
-        function checkIfShouldSetActivePhoto() {
-        // console.log('checkIfShouldSetActivePhoto firing for el #' + keyProp);
-        let photoId = `#photo${keyProp}`;
-        // console.log(chat);
-        let photoMessage = document.querySelector(photoId)
-        let webflowPhotoEl = document.querySelector("#scroll-linked-photo")
-        // Set a scroll event listener for each photo element, if a photo's top comes into view,
-        // It should be set as the next photo.
-        let bounds = chat.getBoundingClientRect();
-        let photoBounds = photoMessage.getBoundingClientRect();
-        let [chatTop, chatBottom] = [bounds.y, bounds.y + bounds.height];
-        let photoTop = photoBounds.y;
-        // Check it hasn't already been set
-          if (!photoMessage.src !== webflowPhotoEl.srcset) {
-            if (photoTop > chatTop && photoTop < chatBottom) {
-              // Switch it over
-              // console.log("shifting over to: " + photoMessage.src);
-              webflowPhotoEl.style.opacity = 0
-              setTimeout(() => {
-                webflowPhotoEl.srcset = photoMessage.src;
-                webflowPhotoEl.style.opacity = 1;
-              }, 500);
-            }
+      let chat = document.querySelector('.chat');
+      function checkIfShouldSetActivePhoto() {
+      // console.log('checkIfShouldSetActivePhoto firing for el #' + keyProp);
+      let photoId = `#photo${keyProp}`;
+      // console.log(chat);
+      let photoMessage = document.querySelector(photoId)
+      let webflowPhotoEl = document.querySelector("#scroll-linked-photo")
+      // Set a scroll event listener for each photo element, if a photo's top comes into view,
+      // It should be set as the next photo.
+      let bounds = chat.getBoundingClientRect();
+      let photoBounds = photoMessage.getBoundingClientRect();
+      let [chatTop, chatBottom] = [bounds.y, bounds.y + bounds.height];
+      let photoTop = photoBounds.y;
+      // Check it hasn't already been set
+        if (photoMessage.src !== webflowPhotoEl.srcset) {
+          console.log(photoMessage.src);
+          console.log(webflowPhotoEl.srcset);
+          if (photoTop > chatTop && photoTop < chatBottom) {
+            // Switch it over
+            // console.log("shifting over to: " + photoMessage.src);
+            webflowPhotoEl.style.opacity = 0
+            setTimeout(() => {
+              webflowPhotoEl.srcset = photoMessage.src;
+              webflowPhotoEl.style.opacity = 1;
+            }, 500);
           }
         }
+      }
 
-        chat.addEventListener('scroll', checkIfShouldSetActivePhoto)
+      chat.addEventListener('scroll', checkIfShouldSetActivePhoto)
     }, []);
 
     return (
@@ -213,7 +216,7 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
 const MessageHistory = ({ messages, photoChangerId }) =>{
   const chatRef = React.useRef(null);
 
-  React.useEffect(() => {
+  React.useEffect(() => {ers in 
     // Link the scroll to the body scroll
     const chat = document.querySelector('.chat');
     document.addEventListener('scroll', () => {
@@ -305,7 +308,7 @@ const domContainer = document.querySelector('#react-component-container');
 
 ReactDOM.render(React.createElement(Phone), domContainer);
 </script>
-<link rel="stylesheet" href="./index.css"/>
+<link rel="stylesheet" href="./style.css"/>
 <script>
 /* window.addEventListener('load', () => {
 let chat = document.querySelector('.chat');
