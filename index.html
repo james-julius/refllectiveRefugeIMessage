@@ -19,6 +19,7 @@
 const data = {
   name:
     "Alice Night",
+  date: 'July 20th, 2020',
   spotifyURI:
     "https://open.spotify.com/track/3PFnF7lmHOxoYGXhxUkzCE?si=Kjoy_nseQ_2-OxGTRQvTag",
   profilePic: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc9bQhs8EkNeOidRUWKcd9CWSEgfLgzWTa3w&usqp=CAU",
@@ -109,7 +110,7 @@ const data = {
 
 const Header = ({name, initials, profilePic, instaLink}) => {
 
-    function getTime(){
+    // function getTime(){
         let date = new Date();
 
         let hours = date.getHours();
@@ -121,14 +122,14 @@ const Header = ({name, initials, profilePic, instaLink}) => {
         let minutes = ("00" + date.getMinutes()).substr(-2);
 
         return hours+':'+minutes;
-    }
+    // }
     
     return (
   <div className={'header'}>
     <div className={'icons'}>
       <span className={'left-icons'}>
         <div className={'clock'}>
-        {getTime()}
+        {data.date}{" "}
         </div>
         <span className="iconify" data-icon="carbon:location-current" data-inline="false"></span>
       </span>
@@ -141,7 +142,7 @@ const Header = ({name, initials, profilePic, instaLink}) => {
       </span>
     </div>
     <div className={'messenger-header'}>
-        <span className={'back-arrow'}>
+        <span className={'back-arrow'} style={{display: 'none'}}>
             <span className="iconify" data-icon="ion-ios-arrow-back" data-inline="false"></span>
         </span>
         <span className={"user-detail"}>
@@ -152,8 +153,7 @@ const Header = ({name, initials, profilePic, instaLink}) => {
             </a>
             <p className={"user-name"}>
                 {name}
-                <span className="iconify right-arrow" data-icon="ic:outline-arrow-forward-ios" data-inline="false"></span>
-            </p>
+                </p>
          </span>
     </div>
   </div>
@@ -179,18 +179,15 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
       let photoTop = photoBounds.y;
       // Check it hasn't already been set
         if (photoMessage.src !== webflowPhotoEl.srcset) {
-          console.log(photoMessage.src);
-          console.log(webflowPhotoEl.srcset);
+          console.log('imagesNotEqual');
           if (photoTop > chatTop && photoTop < chatBottom) {
             // Switch it over
             // console.log("shifting over to: " + photoMessage.src);
             webflowPhotoEl.style.opacity = 0
-            setTimeout(() => {
-              webflowPhotoEl.srcset = photoMessage.src;
-            }, 750);
-            setTimeout(() => {
-              webflowPhotoEl.style.opacity = 1;
-            }, 1500);
+            // setTimeout(() => {
+            setTimeout(() => webflowPhotoEl.srcset = photoMessage.src, 500);
+            webflowPhotoEl.style.opacity = 1;  
+            // }, 500);
           }
         }
       }
@@ -218,7 +215,7 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
 const MessageHistory = ({ messages, photoChangerId }) =>{
   const chatRef = React.useRef(null);
 
-  React.useEffect(() => {ers in 
+  React.useEffect(() => {
     // Link the scroll to the body scroll
     const chat = document.querySelector('.chat');
     document.addEventListener('scroll', () => {
