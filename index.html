@@ -108,9 +108,9 @@ const data = {
   ],
 };
 
-const Header = ({name, initials, profilePic, instaLink}) => {
+const Header = ({name, date, initials, profilePic, instaLink}) => {
 
-    // function getTime(){
+    /* function getTime(){
         let date = new Date();
 
         let hours = date.getHours();
@@ -122,14 +122,14 @@ const Header = ({name, initials, profilePic, instaLink}) => {
         let minutes = ("00" + date.getMinutes()).substr(-2);
 
         return hours+':'+minutes;
-    // }
+    } */
     
     return (
   <div className={'header'}>
     <div className={'icons'}>
       <span className={'left-icons'}>
         <div className={'clock'}>
-        {data.date}{" "}
+        {date}{" "}
         </div>
         <span className="iconify" data-icon="carbon:location-current" data-inline="false"></span>
       </span>
@@ -292,7 +292,8 @@ const Phone = () => {
         className={'window'}
     >
         <Header 
-          name={data.name} 
+          name={data.name}
+          date={data.date}
           initials={initialiseName()} 
           profilePic={data.profilePic}
           instaLink={data.instaLink}
