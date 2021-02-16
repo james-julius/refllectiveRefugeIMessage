@@ -177,10 +177,17 @@ const Message = ({ keyProp, isArtist, text, photoMessage, photo, photoChangerId 
       let photoBounds = photoMessage.getBoundingClientRect();
       let [chatTop, chatBottom] = [bounds.y, bounds.y + bounds.height];
       let photoTop = photoBounds.y;
+      // Save the last image set into a variable so we can check against that too
       // Check it hasn't already been set
         if (photoMessage.src !== webflowPhotoEl.srcset) {
-          console.log('imagesNotEqual');
-          if (photoTop > chatTop && photoTop < chatBottom) {
+          // console.log('imagesNotEqual');
+          // Check if the image top is in the bottom 50 pixels of the chat box
+          // console.log(`photo#${keyProp} Top: ` + photoTop);
+          // console.log(`chat Top: ` + chatTop);
+          // console.log(`chat Bottom: ` + chatBottom);
+          if (photoTop > chatTop && photoTop < chatBottom && photoTop > chatBottom - 50) {
+            // console.log(`bool test for photo #${keyProp}`, (photoTop > chatTop && photoTop < chatBottom && photoTop > chatBottom - 50));
+
             // Switch it over
             // console.log("shifting over to: " + photoMessage.src);
             webflowPhotoEl.style.opacity = 0
