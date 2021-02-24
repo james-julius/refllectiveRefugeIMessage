@@ -18,11 +18,11 @@
 
 const data = {
   name:
-    "Alice Night",
+    "Alice",
   date: 'July 20th, 2020',
   spotifyURI:
     "https://open.spotify.com/track/3PFnF7lmHOxoYGXhxUkzCE?si=Kjoy_nseQ_2-OxGTRQvTag",
-  profilePic: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc9bQhs8EkNeOidRUWKcd9CWSEgfLgzWTa3w&usqp=CAU",
+  profilePic: "",
   instaLink:
     "{{wf {&quot;path&quot;:&quot;instaPage&quot;,&quot;type&quot;:&quot;PlainText&quot;} }}",
   messages: [
@@ -108,7 +108,7 @@ const data = {
   ],
 };
 
-const Header = ({name, date, initials, profilePic, instaLink}) => {
+const Header = ({name, date, profilePic, instaLink}) => {
 
     /* function getTime(){
         let date = new Date();
@@ -288,10 +288,13 @@ const CollapsedInputFooter = ({spotifyURI}) => (
 );
 
 const Phone = () => {
-  function initialiseName() {
+  /* function initialiseName() {
+    if (!data.name.includes(' ')) {
+      return data.name[0]; 
+    }
     let splitName = data.name.split(' ');
     return splitName[0][0].toUpperCase() + splitName[1][0].toUpperCase();
-  }
+  } */
 
   return (
   <div className="phone-image">
@@ -301,7 +304,7 @@ const Phone = () => {
         <Header 
           name={data.name}
           date={data.date}
-          initials={initialiseName()} 
+          // initials={initialiseName()} 
           profilePic={data.profilePic}
           instaLink={data.instaLink}
         />
